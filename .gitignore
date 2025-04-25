@@ -1,0 +1,5 @@
+samples/
+ds2_dense/
+runs/
+ds2_dense.tar.gz
+trained_weights/

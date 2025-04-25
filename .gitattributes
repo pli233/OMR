@@ -1,0 +1,2 @@
+trained_weights/YOLOv8x_Symbols.pt filter=lfs diff=lfs merge=lfs -text
+ds2_dense.tar.gz filter=lfs diff=lfs merge=lfs -text
