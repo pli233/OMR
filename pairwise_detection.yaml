@@ -135,6 +135,6 @@ names:
   133: tupletBracket
   134: staff
   135: ottavaBracket
-path: /Users/peiyuanli/Documents/GitHub/OMR/ds2_dense
-train: images/train
-val: images/test
+path: /Users/peiyuanli/Documents/GitHub/OMR/pairwise_ds
+train: images
+val: images
