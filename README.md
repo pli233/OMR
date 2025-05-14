@@ -1,6 +1,10 @@
-# Optical Music Recognition (OMR) with YOLO and DeepScoresV2 Dense
+# Staff2Sound: A Deep Learning OMR Pipeline for Sheet Music to MIDI
 
-This project aims to detect musical symbols in sheet music images using the YOLO object detection framework, as a first step toward converting printed music into playable MIDI files.
+**Staff2Sound** is an end-to-end deep learning pipeline that converts printed sheet music into playable MIDI files. Built on the DeepScoresV2 Dense dataset and powered by the YOLO object detection framework, our system detects musical symbols with high accuracy and reconstructs melodies through pitch analysis and symbolic interpretation.
+
+To address the challenges of dense and small-object detection in sheet music, we introduce a **staffline-aware pairwise segmentation strategy**, significantly improving note recognition accuracy compared to direct detection. The final output is a valid `.mid` file playable by standard audio software.
+
+This repository includes components for dataset preprocessing, model training and validation, staffline segmentation, and MIDI synthesis.
 
 ---
 
@@ -109,3 +113,37 @@ To directly see the detected stafflines overlaid on the original image, you can 
 ```bash
 python staffline_detection.py
 ```
+
+## 5. YOLO to MIDI
+
+The final step of our project is to **convert YOLO pairwise detection results into playable audio** — specifically, a `.midi` file.
+
+We leverage the bounding box (bbox) outputs from YOLO to infer the **pitch and position** of each musical note. This conversion combines:
+- The vertical position of each notehead relative to detected stafflines
+- Knowledge of pitch mapping in a standard C major scale
+- Temporal ordering based on horizontal (x-axis) location
+
+Due to our limited expertise in music theory, we spent considerable time refining this component. Our current implementation is:
+- **Restricted to C major**
+- **Designed for one pairwise segment at a time**
+- Capable of producing musically valid MIDI files for most staffline pairs
+
+
+To generate a new MIDI file from detection results, run:
+
+**Run `yolo_to_midi.ipynb`**
+
+## 6. Limitations and Future Work
+
+While the current implementation is functional, we recognize its limitations:
+- It doesn't yet handle full-page sheet music end-to-end
+- Time signatures and note durations are heuristically inferred
+- Multi-staff instruments (e.g., piano left/right hand) are not yet distinguished
+
+We plan to expand this module to:
+- Support **full-sheet music conversion**
+- Generalize to **multiple keys and clefs**
+- Improve rhythm extraction and barline handling
+
+Despite these constraints, we believe this is **a matter of iteration** and not a fundamental limitation of our method.
+
