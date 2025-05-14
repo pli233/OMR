@@ -4,6 +4,8 @@
 
 To address the challenges of dense and small-object detection in sheet music, we introduce a **staffline-aware pairwise segmentation strategy**, significantly improving note recognition accuracy compared to direct detection. The final output is a valid `.mid` file playable by standard audio software.
 
+![Workflow](./attachments/workflow.png)
+
 This repository includes components for dataset preprocessing, model training and validation, staffline segmentation, and MIDI synthesis.
 
 ---
@@ -124,7 +126,15 @@ As seen, the **pairwise detection almost perfectly identifies notes** between th
 
 ---
 
-### 3.4 How to Validate
+### 3.4 MAP@50 Results
+
+Our cropping-based strategy effectively reduces contextual complexity while preserving the musically relevant structure of sheet music. This approach led to a notable performance improvement, achieving an overall mAP@50 of 0.865. 
+
+![Exp Result](./attachments/exp_result.png)
+---
+
+
+### 3.5 How to Validate
 
 - To validate model performance on deepscore validation set:  
   **Run `yolo_validation.ipynb`**
