@@ -129,7 +129,7 @@ Due to our limited expertise in music theory, we spent considerable time refinin
 - Capable of producing musically valid MIDI files for most staffline pairs
 
 
-To generate a new MIDI file from detection results, run:
+To generate a new MIDI file from detection results:
 
 **Run `yolo_to_midi.ipynb`**
 
