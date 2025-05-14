@@ -7,6 +7,35 @@ To address the challenges of dense and small-object detection in sheet music, we
 This repository includes components for dataset preprocessing, model training and validation, staffline segmentation, and MIDI synthesis.
 
 ---
+## Repository Structure
+
+Below is a brief overview of the key folders and scripts in this repository:
+
+### Directories
+- `attachments/`: Stores visual result images like detection comparisons, validation plots, etc.
+- `canon_samples/`: Contains example images from canon music sheets used for testing.
+- `clean_models/`: (Optional) Contain YOLO pretrained model.
+- `sheet_samples/`: Sample music sheets used for detection and visualization.
+- `trained_models/`: Stores trained YOLOv8 model used for inference and validation.
+
+### Core Scripts and Notebooks
+- `prepare_ds2_for_yolo.ipynb`: Preprocesses the DeepScoresV2 Dense dataset to YOLO format.
+- `yolo_train.py`: Trains the YOLOv8 model using the processed dataset.
+- `yolo_validation.ipynb`: Runs full validation on the test set (direct or pairwise).
+- `yolo_visualization.ipynb`: Visualizes predictions over multiple sheets.
+- `staffline_detection.py`: Detects staff lines from grayscale images (used for segmentation).
+- `yolo_to_midi.ipynb`: Converts YOLO detection results into a playable MIDI file.
+
+### Development Helper scripts
+- `midi_visualization.py`: Visualization of MIDI notes aligned with sheet images.
+- `midi_to_sheet.py`: Helper for converting MIDI back to visual representations.
+
+### YOLO Configurations
+fix the path or use `prepare_ds2_for_yolo.ipynb` to auto generate
+- `deepscores.yaml`: YOLO training config file for standard dataset.
+- `deepscores_pairwise.yaml`: YOLO config tailored for pairwise cropped inputs.
+
+---
 
 ## 1. Dataset Preparation
 
