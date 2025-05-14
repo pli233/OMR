@@ -1,20 +1,45 @@
-# Optical Music Recognition
+# Optical Music Recognition (OMR) with YOLO and DeepScoresV2 Dense
 
+This project aims to detect musical symbols in sheet music images using the YOLO object detection framework, as a first step toward converting printed music into playable MIDI files.
 
+---
 
-# 1. Dataset Prepration
+## 1. Dataset Preparation
 
-In this project, we use deepscore v2 dense dataset, it can be find at https://zenodo.org/records/4012193.
-We also attach a copy of ds2_dense.tar.gz in our google cloud
+We use the **DeepScoresV2 Dense** dataset for training and evaluation.
 
-To make sure that yolo model can be trained properly, we have done some data clean up and structure adjustment.
-Please run all commands in prepare_ds2_for_yolo.ipynb before start running other scripts of our project
+- Official source: [Zenodo Record](https://zenodo.org/records/4012193)
+- Backup copy: [Google Drive Folder](https://drive.google.com/drive/folders/1Fh5MDLxmB_od7o7MvaRp8b55Dn7dbvi0)
 
-# 2. YOLO model training
+> 📦 **Note:** Please download and extract `ds2_dense.tar.gz` before proceeding.
 
-Our first step to create midi is train a YOLO model
-run yolo_train.py to train the model
-please make sure that your ds2_dense have ds2_dense/labels directory. It includes the annotation format meets the requiremnt of YOLO
-If u dont have it, run prepare_ds2_for_yolo.ipynb first
+### Preprocessing Instructions
 
-# 3.
+Before training, you must clean and reformat the dataset to be compatible with YOLO:
+
+- Annotations must be converted into YOLO format.
+- Images and labels must be organized into `images/train`, `images/test`, `labels/train`, and `labels/test`.
+
+Run the notebook `prepare_ds2_for_yolo.ipynb` to complete this step.
+
+---
+
+## 2. YOLO Model Training
+
+The first stage in our OMR pipeline is training a YOLO model to detect music symbols.
+
+To start training run:
+
+```bash
+python yolo_train.py
+```
+Your dataset folder (ds2_dense/) must contain:
+- images/train/ and images/test/
+- labels/train/ and labels/test/
+
+Your OMR directory must have: 
+- deepscores.yaml
+
+If any of above files are missing, re-run `prepare_ds2_for_yolo.ipynb` before training.
+
+## 3. 
