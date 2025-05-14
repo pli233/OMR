@@ -19,6 +19,7 @@ Below is a brief overview of the key folders and scripts in this repository:
 - `trained_models/`: Stores trained YOLOv8 model used for inference and validation.
 
 ### Core Scripts and Notebooks
+- `env_setup.sh`: Prepare conda environment for this project
 - `prepare_ds2_for_yolo.ipynb`: Preprocesses the DeepScoresV2 Dense dataset to YOLO format.
 - `yolo_train.py`: Trains the YOLOv8 model using the processed dataset.
 - `yolo_validation.ipynb`: Runs full validation on the test set (direct or pairwise).
@@ -36,7 +37,16 @@ fix the path or use `prepare_ds2_for_yolo.ipynb` to auto generate
 - `deepscores_pairwise.yaml`: YOLO config tailored for pairwise cropped inputs.
 
 ---
+## 0. Environment Setup
 
+To setup environment: run `env_setup.sh`. 
+
+If a pytorch-gpu environment is already setup, run:
+```bash
+pip install ultralytics
+pip install matplotlib opencv-python Pillow pandas scipy jupyter
+pip install pretty_midi mido pygame
+```
 ## 1. Dataset Preparation
 
 We use the **DeepScoresV2 Dense** dataset for training and evaluation.
